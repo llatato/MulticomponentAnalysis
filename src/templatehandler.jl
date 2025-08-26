@@ -2,7 +2,6 @@
 
 module GCHelper
     ###### define templating system ######
-
     using XLSX
     # input fields
     const component_sheet_title = "Component Information"
@@ -106,9 +105,6 @@ module GCHelper
         peak_areas = collect.(eachrow(hcat(peak_areas_table...)))
         return peak_areas 
     end
-
-
-
 end
 
 

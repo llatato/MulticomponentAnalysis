@@ -46,12 +46,3 @@ function AnalyzedSample(curve::CalibrationCurve, peak_areas)
     mass_fractions = A_matrix \ b_vec
     return AnalyzedSample(curve, peak_areas, mass_fractions)
 end
-
-pretend_areas = [
-    [100, 55, 20, 11],
-    [100, 52, 22, 10],
-    [100, 46, 18, 12]
-]
-
-curve = CalibrationCurve(["a","b","c","d"],[0.7,0.2,0.05,0.05], pretend_areas)
-AnalyzedSample(curve, pretend_areas)
