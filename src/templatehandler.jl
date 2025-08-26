@@ -210,12 +210,19 @@ function processtemplate(template_path, results_path; overwrite = true)
         row += 3
         end
 
+        sheet = xf[GCHelper.check_standard_sheet_title]
+        sheet[GCHelper.check_component_count_start] = vcat(collect(1:num_components))
+
+        col = GCHelper.get_column(sheet,GCHelper.check_composition)
+        row = GCHelper.get_row(sheet,GCHelper.check_composition) + 1
+
+        sheet[row, col] = "Transfer Factor Vector (wrt component 1):"
+        sheet[row, col + 1] = "Basis Component (N/A)"
+        sheet[row, col + 2] = string.(analyzed_samples[1][3].calibration.transfer_factor_vector)
+
         col = GCHelper.get_column(sheet,GCHelper.ratio_report_start)
         row = GCHelper.get_row(sheet,GCHelper.ratio_report_start)
         col += num_components + 2
-
-        sheet = xf[GCHelper.check_standard_sheet_title]
-        sheet[GCHelper.check_component_count_start] = vcat(collect(1:num_components))
 
         for sample in analyzed_samples
             sheet = xf[string(sample[2])]

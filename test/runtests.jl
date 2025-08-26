@@ -13,6 +13,8 @@ using Measurements
 
     processed_template = processtemplate(test_template, output_template)
 
+    processed_template[1][3].calibration.transfer_factor_vector
+
     @test processed_template[1][3].mass_fractions[end].val ≈ 0.058257652690548965
     @test processed_template[1][3].mass_fractions[end].err ≈ 0.0030639999702493643
 end
