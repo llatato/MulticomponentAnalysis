@@ -227,13 +227,35 @@ function processtemplate(template_path, results_path; overwrite = true)
         for sample in analyzed_samples
             sheet = xf[string(sample[2])]
             sheet[GCHelper.unknown_component_count_start] = vcat(collect(1:num_components))
-            sheet[row,col] = "Component Mass Ratio Matrix"
+            
+            
             comps = sample[3].calibration.component_names
-            sheet[row + 1, col] = permutedims(comps)
-            sheet[row, col + 1] = comps
             mass_fractions = sample[3].mass_fractions
-            ratio_matrix = string.(mass_fractions ./ mass_fractions')
-            sheet[row + 1, col + 1] = ratio_matrix
+            sname = string(sample[1])
+            row = GCHelper.get_row(sheet,GCHelper.ratio_report_start)
+            
+            for ratiosample in analyzed_samples
+                rsname = string(ratiosample[1])
+
+                sheet[row,col] = "Component Mass Ratio Matrix"
+                sheet[row + 1, col] = sname * "/" * rsname 
+                sheet[row + 2, col] = permutedims(comps)
+                sheet[row + 1, col + 1] = comps
+                mass_fractions_comparison = ratiosample[3].mass_fractions
+                ratio_matrix = mass_fractions ./ mass_fractions_comparison'
+                sheet[row + 2, col + 1] = string.(ratio_matrix)
+                diagonal = diag(ratio_matrix)
+                diag_vals = (x -> x.val).(diagonal)
+                diag_errs = (x -> x.err).(diagonal)
+
+                sheet[row, col + num_components + 2 ] = "Matrix Diagonal"
+                sheet[row+1, col + num_components + 2] = "Values"
+                sheet[row+1, col + num_components + 3] = "Errors"
+                sheet[row+2, col + num_components + 2 ] = permutedims(permutedims(diag_vals))
+                sheet[row+2, col + num_components + 3 ] = permutedims(permutedims(diag_errs))
+                row += num_components + 4
+            end
+
         end
 
     end

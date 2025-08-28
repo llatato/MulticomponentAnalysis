@@ -8,7 +8,6 @@ using Measurements
     output_template = joinpath(@__DIR__, "template_results","test_template_output.xlsx")
     generatetemplate(joinpath(@__DIR__, "test_templates", "blank_template.xlsx"))
 
-    
     analysis= readtemplate(test_template)
 
     processed_template = processtemplate(test_template, output_template)
