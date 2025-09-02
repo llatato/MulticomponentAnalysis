@@ -6,11 +6,11 @@ using Measurements
 
     test_template = joinpath(@__DIR__, "test_templates", "testtemplate.xlsx")
     output_template = joinpath(@__DIR__, "template_results","test_template_output.xlsx")
-    generatetemplate(joinpath(@__DIR__, "test_templates", "blank_template.xlsx"))
+    generatetemplate(AnalyticalApparatus(), joinpath(@__DIR__, "test_templates", "blank_template.xlsx"))
 
-    analysis= readtemplate(test_template)
+    analysis= readtemplate(AnalyticalApparatus(), test_template)
 
-    processed_template = processtemplate(test_template, output_template)
+    processed_template = processtemplate(AnalyticalApparatus(), test_template, output_template)
 
     processed_template[1][3].calibration.transfer_factor_vector
 

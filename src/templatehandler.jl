@@ -1,4 +1,4 @@
-
+struct AnalyticalApparatus end
 
 module GCHelper
     ###### define templating system ######
@@ -108,7 +108,7 @@ module GCHelper
 end
 
 
-function generatetemplate(filepath = GCHelper.default_file_name)
+function generatetemplate(::AnalyticalApparatus, filepath = GCHelper.default_file_name)
     XLSX.openxlsx(filepath, mode = "w"; enable_cache = true) do xf
         sheet = xf[1]
         XLSX.rename!(sheet, GCHelper.component_sheet_title)
@@ -125,7 +125,7 @@ function generatetemplate(filepath = GCHelper.default_file_name)
 end
 
 
-function readtemplate(filepath)
+function readtemplate(::AnalyticalApparatus, filepath::String)
     xf = XLSX.readxlsx(filepath)
     
     #open component sheet and get component names
@@ -176,9 +176,9 @@ function readtemplate(filepath)
 end
 
 
-function processtemplate(template_path, results_path; overwrite = true)
+function processtemplate(::AnalyticalApparatus, template_path::String, results_path::String; overwrite = true)
     
-    analyzed_samples, num_components = readtemplate(template_path)
+    analyzed_samples, num_components = readtemplate(AnalyticalApparatus(), template_path)
 
     if template_path == results_path
         @warn("The template and results file paths were the same")

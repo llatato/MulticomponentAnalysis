@@ -6,6 +6,7 @@ using LinearAlgebra
 using Statistics
 
 include("templatehandler.jl")
+export AnalyticalApparatus
 export generatetemplate
 export readtemplate
 export processtemplate
