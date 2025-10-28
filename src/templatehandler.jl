@@ -216,7 +216,7 @@ function processtemplate(::AnalyticalApparatus, template_path::String, results_p
         col = GCHelper.get_column(sheet,GCHelper.check_composition)
         row = GCHelper.get_row(sheet,GCHelper.check_composition) + 1
 
-        sheet[row, col] = "Transfer Factor Vector (wrt component 1):"
+        sheet[row, col] = "Relative Response Factor Vector (wrt component 1):"
         sheet[row, col + 1] = "Basis Component (N/A)"
         sheet[row, col + 2] = string.(analyzed_samples[1][3].calibration.transfer_factor_vector)
 
