@@ -11,9 +11,7 @@ MulticomponentAnalysis.jl is a Julia package designed to streamline quantitative
 - **Universal Detector Support**: Works with any analytical detector that produces peak area or height data
 - **Excel Templating**: Generate templates for non-programmers; operators can use Excel without writing code
 - **Automatic Error Propagation**: Integrates Measurements.jl to calculate linearly propagated uncertainties
-- **n-Component Mixtures**: Handles arbitrary number of components with rigorous mathematics
-- **Fast Analysis**: Complete data analysis in seconds, from raw peak areas to final mass fractions with uncertainties
-- **Multiple Injections**: Leverages replicate measurements to improve precision
+- **n-Component Mixtures**: Handles arbitrary number of components and analysis runs.
 
 ## Theory & Mathematics
 
