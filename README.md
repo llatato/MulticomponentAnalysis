@@ -1,6 +1,6 @@
 # MulticomponentAnalysis.jl
 
-**Fast, automated quantitative analysis of n-component mixtures from analytical detector data with automatic error propagation**
+**A simple package for fast, automated quantitative analysis of n-component mixtures from analytical detector data with automatic error propagation**
 
 ## Overview
 
